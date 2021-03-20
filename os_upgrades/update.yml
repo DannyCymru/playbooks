@@ -12,7 +12,6 @@
         when: ansible_facts['distribution']=="RedHat"
 
       - name: update ubuntu
-	become
         apt:
          upgrade: dist
         when: ansible_facts['distribution']=="Ubuntu"
