@@ -1,0 +1,37 @@
+---
+- name: Web Server
+  hosts: web_servers
+  become: yes
+  remote_user: danny
+  
+  tasks:
+      - name: Update
+        apt:
+         update_cache: yes
+
+      - name: HTTP
+         apt:
+          name: nginx-full
+          state: latest
+          install_recommends: yes
+
+      - name: PHP
+         apt:
+          pkg: 
+            - php
+            - php7.4-gd 
+            - php7.4-mysql
+          state: latest
+          install_recommends: yes
+
+      - name: MYSQL
+         apt:
+          name: mariadb
+          state: latest
+          install_recommends: yes
+
+      - name: fail_to_ban
+         apt:
+          name: fail2ban
+          state: latest
+          install_recommends: yes
