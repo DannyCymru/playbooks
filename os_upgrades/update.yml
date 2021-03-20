@@ -1,0 +1,29 @@
+---
+- name: OS Updates
+  hosts: all
+  become: yes
+  remote_user: danny
+  gather_facts: yes
+  tasks:
+      - name: update rhel
+        dnf:
+          name: "*"
+          state: latest
+        when: ansible_facts['distribution']=="RedHat"
+
+      - name: update ubuntu
+	become
+        apt:
+         upgrade: dist
+        when: ansible_facts['distribution']=="Ubuntu"
+
+      - name: update debian
+        apt:
+         upgrade: dist
+        when: ansible_facts['distribution']=="Debian"
+
+      - name: update OpenSUSE
+        zypper:
+             name: "*"
+             state: latest
+        when: ansible_facts['distribution']=="OpenSUSE"
