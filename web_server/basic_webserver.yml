@@ -21,6 +21,7 @@
           - php
           - php7.4-gd 
           - php7.4-mysql
+          - php7.4-fpm
          state: latest
          install_recommends: yes
 
@@ -35,3 +36,9 @@
          name: fail2ban
          state: latest
          install_recommends: yes
+
+      - name: ACL
+        apt:
+          name: acl
+          state: latest
+          install_recommends: yes
